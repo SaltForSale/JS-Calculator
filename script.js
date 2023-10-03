@@ -14,17 +14,23 @@ function numButPress(num) {
 
 }
 function mathButPress(operator) {
-    
+
 }
 function equalButPress() {
-    
+
 }
 function clearButPress() {
-    
+    prevVal = '';
+    newVal = '';
+    resultVal = "";
+    mathOp = '';
+    decimalClicked = false;
+    valMemStored = '';
+    document.getElementById('entry').value = '0';
 }
 function copyButPress() {
-    
+
 }
 function pasteButPress() {
-    
+
 }
