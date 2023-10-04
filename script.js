@@ -11,7 +11,28 @@ let decimalClicked = false;
 let valMemStored = '';
 
 function numButPress(num) {
-
+    //* if a number has already been clicked
+    if (resultVal) {
+        //* start a new number
+        newVal = num;
+        //* reset to create a new result
+        resultVal = '';
+    } else {
+        //* used to block multiple decimals
+        if (num === '.') {
+            if (decimalClicked != true) {
+                //* take the current value of newVal and add the character pressed
+                newVal += num;
+                //* Sets decimal check var to true, won't allow more
+                decimalClicked = true;
+            }
+        } else {
+            newVal += num;
+            console.log(newVal);
+        }
+    }
+//* update the display
+document.getElementById('entry').value = newVal;
 }
 function mathButPress(operator) {
 
