@@ -31,20 +31,59 @@ function numButPress(num) {
             console.log(newVal);
         }
     }
-//* update the display
-document.getElementById('entry').value = newVal;
+    //* update the display
+    document.getElementById('entry').value = newVal;
 }
 function mathButPress(operator) {
-
+    //* checks if there was a previous calculation by seeing if resultVal has a value
+    //* if resultVal doesn't have a value, then store the current value as a previous value for the next calculation
+    if (!resultVal) {
+        prevVal = newVal;
+    } else {
+        //* if there is a current result, store that as the previous value entered
+        prevVal = resultVal;
+    }
+    //* restart creation of a new number
+    newVal = '';
+    //* reset decimal clicked
+    decimalClicked = false;
+    //* store operator clicked
+    mathOp = operator;
+    //* prepare entry for receiving new numbers
+    resultVal = '';
+    document.getElementById('entry').value = '0';
 }
 function equalButPress() {
-
+    //* reset decimalClicked
+    decimalClicked = false;
+    prevVal = parseFloat(prevVal);
+    newVal = parseFloat(newVal);
+    //* perform calculations based on stored operator
+    switch (mathOp) {
+        case '+':
+            resultVal = prevVal + newVal;
+            break;
+        case '-':
+            resultVal = prevVal - newVal;
+            break;
+        case '*':
+            resultVal = prevVal * newVal;
+            break;
+        case '/':
+            resultVal = prevVal / newVal;
+            break;
+        //* if equals is hit without an operator leave everything as it is
+        default:
+            resultVal = newVal;
+    }
+    prevVal = resultVal;
+    document.getElementById('entry').value = resultVal;
 }
 //* clears everything except memory
 function clearButPress() {
     prevVal = '';
     newVal = '';
-    resultVal = "";
+    resultVal = '';
     mathOp = '';
     decimalClicked = false;
     document.getElementById('entry').value = '0';
